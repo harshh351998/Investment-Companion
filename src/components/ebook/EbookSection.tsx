@@ -157,6 +157,7 @@ const EbookSection = () => {
   return (
     <section 
       ref={ref} 
+      id="ebook"
       className="py-20 relative overflow-hidden"
     >
       {/* Background elements */}

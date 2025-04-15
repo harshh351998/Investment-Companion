@@ -39,19 +39,9 @@ const Header = () => {
         { name: 'Financial Independence', path: '/courses/financial-independence' }
       ]
     },
-    { title: 'E-Book', path: '/e-book' },
-    { title: 'Blog', path: '/blog' },
-    {
-      title: 'Resources',
-      path: '/resources',
-      submenu: [
-        { name: 'Free Tools', path: '/resources/tools' },
-        { name: 'Podcast', path: '/resources/podcast' },
-        { name: 'Investment Calculator', path: '/resources/calculator' },
-        { name: 'Risk Assessment', path: '/resources/risk-assessment' }
-      ]
-    },
+    { title: 'E-Book', path: '/#ebook' },
     { title: 'About', path: '/about' },
+    { title: 'Contact', path: '/contact' }
   ];
 
   const toggleMobileSubmenu = (title: string) => {
@@ -63,7 +53,7 @@ const Header = () => {
   };
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'header-gradient py-4 shadow-lg' : 'bg-transparent py-6'}`}>
+    <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-gradient-to-b from-[#051622]/95 to-black/95 backdrop-blur-md py-4 shadow-lg' : 'bg-transparent py-6'}`}>
       {/* Decorative top border */}
       {isScrolled && (
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent"></div>
@@ -79,18 +69,16 @@ const Header = () => {
           >
             <Link href="/" aria-label="Investment Companion Home">
               <div className="flex items-center space-x-3 group">
-                <div className="relative h-16 w-16 transition-transform duration-300 group-hover:scale-110">
+                <div className="relative h-14 w-14 overflow-hidden rounded-full border border-cyan-500/30 shadow-lg shadow-cyan-500/20 transition-transform duration-300 group-hover:scale-110">
                   <Image
                     src="/logo.png"
                     alt="Investment Companion Logo"
-                    width={64}
-                    height={64}
-                    className="modern-logo"
+                    width={56}
+                    height={56}
+                    className="object-contain"
                     style={{ 
-                      objectFit: 'contain',
-                      backgroundColor: 'transparent',
-                      mixBlendMode: 'screen',
-                      opacity: 0.95
+                      position: 'absolute',
+                      inset: 0
                     }}
                     priority
                   />
@@ -101,8 +89,8 @@ const Header = () => {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2, duration: 0.5 }}
                 >
-                  <h1 className="text-2xl font-bold">
-                    <span className="bg-gradient-to-r from-cyan-400 to-blue-400 text-transparent bg-clip-text">Investment</span>
+                  <h1 className="text-xl font-bold">
+                    <span className="gradient-text">Investment</span>
                   </h1>
                   <p className="text-white text-base font-medium -mt-1">Companion</p>
                 </motion.div>
@@ -121,10 +109,13 @@ const Header = () => {
               <div key={item.title} className="relative group">
                 <Link 
                   href={item.path}
-                  className={`px-4 py-2.5 text-base font-medium transition-all duration-300 rounded-lg hover:bg-white/5 hover:text-cyan-300 relative nav-item ${pathname === item.path ? 'text-cyan-400 active' : 'text-white'}`}
+                  className={`px-4 py-2.5 text-base font-medium transition-all duration-300 rounded-lg hover:bg-white/5 relative nav-item group ${pathname === item.path ? 'text-cyan-400 active' : 'text-gray-200'}`}
                   aria-current={pathname === item.path ? 'page' : undefined}
                 >
-                  {item.title}
+                  <span className="relative">
+                    {item.title}
+                    <span className="absolute bottom-0 left-0 w-0 h-px bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                  </span>
                   {/* Active indicator - using motion for smooth transitions */}
                   {pathname === item.path && (
                     <motion.div 
@@ -164,23 +155,37 @@ const Header = () => {
 
           {/* CTA Button */}
           <motion.div 
-            className="hidden lg:block"
+            className="hidden lg:flex items-center gap-3"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
+            <Link href="/login">
+              <motion.button 
+                className="border border-cyan-400 hover:bg-cyan-900/20 transition-all py-2 px-5 rounded-md flex items-center justify-center space-x-2 text-cyan-400 font-medium group"
+                whileHover={{ scale: 1.05, boxShadow: '0 0 15px rgba(0, 255, 255, 0.5)' }}
+                whileTap={{ scale: 0.95 }}
+                aria-label="Log in to your account"
+              >
+                <span className="text-sm">Log In</span>
+              </motion.button>
+            </Link>
+            
             <Link href="/signup">
               <motion.button 
-                className="primary-button bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-base font-medium py-3 px-7 rounded-lg relative overflow-hidden group"
-                whileHover={{ scale: 1.05 }}
+                className="py-2 px-5 rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-sm font-medium relative overflow-hidden"
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: '0 0 15px rgba(0, 255, 255, 0.5)'
+                }}
                 whileTap={{ scale: 0.95 }}
                 aria-label="Sign up for Investment Companion"
               >
                 <span className="relative z-10 flex items-center">
-                  <span>Get Started</span>
+                  <span>Sign Up</span>
                   <motion.svg 
                     xmlns="http://www.w3.org/2000/svg" 
-                    className="h-5 w-5 ml-2" 
+                    className="h-4 w-4 ml-2" 
                     viewBox="0 0 20 20" 
                     fill="currentColor"
                     animate={{ x: [0, 5, 0] }}
@@ -193,6 +198,7 @@ const Header = () => {
                     />
                   </motion.svg>
                 </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 animate-gradient"></div>
               </motion.button>
             </Link>
           </motion.div>
@@ -224,7 +230,7 @@ const Header = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden overflow-hidden bg-gradient-to-b from-[#051622] to-[#030d13]"
+            className="lg:hidden overflow-hidden bg-gradient-to-b from-[#051622] to-[#030d13] border-b border-cyan-900/30"
           >
             <div className="container mx-auto px-4 py-5">
               <div className="space-y-1">
@@ -242,10 +248,20 @@ const Header = () => {
                     >
                       <Link 
                         href={item.path}
-                        className={`text-base font-medium ${pathname === item.path ? 'text-cyan-400' : 'text-white'}`}
+                        className={`text-base font-medium group inline-flex items-center ${pathname === item.path ? 'text-cyan-400' : 'text-gray-300'}`}
                         onClick={(e) => item.submenu && e.preventDefault()}
                       >
-                        {item.title}
+                        {!item.submenu && (
+                          <span className="relative mr-2 text-cyan-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                              <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </span>
+                        )}
+                        <span className="relative">
+                          {item.title}
+                          <span className="absolute bottom-0 left-0 w-0 h-px bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                        </span>
                       </Link>
                       {item.submenu && (
                         <motion.svg 

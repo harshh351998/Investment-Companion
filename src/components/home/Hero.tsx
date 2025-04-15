@@ -251,16 +251,19 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <Link href="/courses">
+            <Link href="#courses" scroll={false} onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}>
               <motion.button 
-                className="button-gradient py-3 px-8 rounded-md flex items-center justify-center space-x-2 text-white font-medium relative overflow-hidden"
+                className="button-gradient py-4 px-8 rounded-md flex items-center justify-center space-x-2 text-white font-medium relative overflow-hidden shadow-lg"
                 whileHover={{ scale: 1.05, y: -5 }}
                 whileTap={{ scale: 0.95 }}
                 initial="initial"
                 whileHover="hover"
                 variants={glowVariants}
               >
-                <span className="relative z-10">View Courses</span>
+                <span className="relative z-10 text-lg font-semibold">View Courses</span>
                 <motion.svg 
                   xmlns="http://www.w3.org/2000/svg" 
                   className="h-5 w-5 relative z-10" 
@@ -275,11 +278,14 @@ const Hero = () => {
                     clipRule="evenodd" 
                   />
                 </motion.svg>
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/30 to-blue-500/30 animate-gradient"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/40 to-blue-500/40 animate-gradient"></div>
               </motion.button>
             </Link>
             
-            <Link href="/ebook">
+            <Link href="#ebook" scroll={false} onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('ebook')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}>
               <motion.button 
                 className="border border-cyan-400 hover:bg-cyan-900/20 transition-all py-3 px-8 rounded-md flex items-center justify-center space-x-2 text-cyan-400 font-medium group"
                 whileHover={{ scale: 1.05, boxShadow: '0 0 15px rgba(0, 255, 255, 0.5)' }}

@@ -82,7 +82,7 @@ const CourseCard = ({
       initial="hidden"
       animate={controls}
       whileHover="hover"
-      className="group h-full rounded-xl overflow-hidden border border-gray-800 bg-[#001019]"
+      className="group h-full rounded-xl overflow-hidden border border-gray-800 bg-[#001019] hover:border-cyan-500/30 transition-all duration-300 flex flex-col"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -90,7 +90,7 @@ const CourseCard = ({
       <div className="relative h-36 w-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center">
         {isPopular && (
           <motion.div 
-            className="absolute top-4 right-4 z-20 bg-orange-500 text-white text-xs font-bold py-1 px-3 rounded-full"
+            className="absolute top-4 right-4 z-20 bg-orange-500 text-white text-xs font-bold py-1.5 px-4 rounded-full shadow-lg"
             initial={{ opacity: 0, scale: 0, x: 20 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ delay: delay + 0.3, duration: 0.5, type: 'spring' }}
@@ -100,7 +100,7 @@ const CourseCard = ({
         )}
         
         <motion.div
-          className="relative w-20 h-20 bg-[#061527] rounded-full flex items-center justify-center"
+          className="relative w-20 h-20 bg-[#061527] rounded-full flex items-center justify-center shadow-lg"
           variants={iconVariants}
         >
           <Image 
@@ -114,9 +114,9 @@ const CourseCard = ({
       </div>
       
       {/* Content */}
-      <div className="p-6 flex flex-col h-64">
-        <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-        <p className="text-gray-400 text-sm mb-6 line-clamp-3">{description}</p>
+      <div className="p-6 flex flex-col flex-grow min-h-[16rem]">
+        <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
+        <p className="text-gray-300 text-sm mb-6 line-clamp-3">{description}</p>
         
         <div className="mt-auto flex flex-col gap-4">
           <div className="flex justify-between items-center">
@@ -136,17 +136,18 @@ const CourseCard = ({
                   className={`h-4 w-4 ${i < Math.floor(rating) ? 'text-yellow-400' : 'text-gray-600'}`}
                   viewBox="0 0 20 20" 
                   fill="currentColor"
+                  aria-hidden="true"
                 >
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </motion.svg>
               ))}
-              <span className="text-gray-400 text-xs ml-1">{rating}/5</span>
+              <span className="text-gray-400 text-xs ml-1 font-medium">{rating}/5</span>
             </div>
           </div>
           
           <motion.button
-            className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-3 px-6 rounded-md font-medium flex items-center justify-center space-x-2 hover:from-cyan-600 hover:to-blue-600 transition-all duration-300"
-            whileHover={{ scale: 1.02 }}
+            className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white py-3 px-6 rounded-md font-medium flex items-center justify-center space-x-2 hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-md"
+            whileHover={{ scale: 1.02, boxShadow: '0 0 15px rgba(0, 255, 255, 0.3)' }}
             whileTap={{ scale: 0.98 }}
           >
             <span>Enroll Now</span>
@@ -157,6 +158,7 @@ const CourseCard = ({
               fill="currentColor"
               animate={{ x: isHovered ? [0, 5, 0] : 0 }}
               transition={{ repeat: isHovered ? Infinity : 0, duration: 1 }}
+              aria-hidden="true"
             >
               <path 
                 fillRule="evenodd" 
