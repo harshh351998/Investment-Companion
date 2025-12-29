@@ -98,10 +98,10 @@ export default function CoursesList({
   
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="text-center mb-16">
+      <div className="text-center mb-12 md:mb-16">
         <div className="h-1 w-20 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-6"></div>
         
-        <h1 className="text-4xl sm:text-5xl font-bold mb-6 relative inline-block">
+        <h1 className="text-4xl sm:text-5xl font-bold mb-4 md:mb-6 relative inline-block">
           <span className="gradient-text">Explore Our Courses</span>
           <div className="absolute -bottom-2 left-0 h-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 w-full"></div>
         </h1>
@@ -177,7 +177,7 @@ export default function CoursesList({
         </motion.div>
       </AnimatePresence>
 
-      <div className="text-center mt-20">
+      <div className="text-center mt-16 md:mt-20">
         {!showAll && (
           <Link href="/courses">
             <motion.button 

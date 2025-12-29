@@ -158,7 +158,7 @@ const EbookSection = () => {
     <section 
       ref={ref} 
       id="ebook"
-      className="py-20 relative overflow-hidden"
+      className="py-24 md:py-28 relative overflow-hidden"
     >
       {/* Background elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-[#051622] to-black"></div>
@@ -191,10 +191,12 @@ const EbookSection = () => {
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Ultimate Guide to 
               <br />
-              <span className="gradient-text text-glow animate-pulse-glow">Financial Freedom</span>
+              <span className="gradient-text text-glow animate-pulse-glow" style={{ textShadow: '0 0 20px rgba(0, 255, 255, 0.5)' }}>
+                Financial Freedom
+              </span>
             </h2>
 
-            <p className="text-gray-300 mb-8 text-lg">
+            <p className="text-white mb-8 text-lg leading-relaxed" style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}>
               Discover the secrets to building wealth, making smart
               investments, and achieving your financial goals with our
               comprehensive e-book.
@@ -239,9 +241,9 @@ const EbookSection = () => {
                       </svg>
                     </div>
                   </motion.div>
-                  <span className={`text-base ${
-                    currentFeature === index ? 'text-cyan-400' : 'text-gray-300'
-                  }`}>{item}</span>
+                  <span className={`text-base font-medium ${
+                    currentFeature === index ? 'text-cyan-300' : 'text-white'
+                  }`} style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' }}>{item}</span>
                 </motion.li>
               ))}
             </motion.ul>
@@ -258,19 +260,20 @@ const EbookSection = () => {
                 className="flex flex-col"
               >
                 <motion.span 
-                  className="text-4xl font-bold text-cyan-400"
+                  className="text-5xl font-bold text-white"
                   animate={{ 
                     textShadow: [
-                      '0 0 5px rgba(0, 255, 255, 0.3)', 
                       '0 0 10px rgba(0, 255, 255, 0.5)', 
-                      '0 0 5px rgba(0, 255, 255, 0.3)'
+                      '0 0 20px rgba(0, 255, 255, 0.7)', 
+                      '0 0 10px rgba(0, 255, 255, 0.5)'
                     ] 
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
+                  style={{ filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5))' }}
                 >
                   ₹500
                 </motion.span>
-                <span className="text-gray-500 line-through text-sm">₹5000</span>
+                <span className="text-gray-400 line-through text-base font-medium">₹5000</span>
               </motion.div>
               
               <motion.div
@@ -322,18 +325,41 @@ const EbookSection = () => {
                     </motion.svg>
                   ))}
                 </div>
-                <span className="text-gray-400 text-xs">300+ happy readers</span>
+                <span className="text-gray-300 text-sm font-medium">300+ happy readers</span>
               </motion.div>
             </div>
 
-            {/* Enhanced CTA button with more advanced animation */}
+            {/* Premium 3D Oval CTA Button */}
             <motion.button
-              className="button-gradient py-4 px-8 rounded-lg flex items-center justify-center space-x-2 text-white font-medium relative overflow-hidden group"
-              whileHover={{ 
-                scale: 1.05, 
-                boxShadow: '0 0 25px rgba(0, 255, 255, 0.5)' 
+              className="relative py-5 px-12 rounded-full flex items-center justify-center space-x-3 text-white font-bold text-lg overflow-hidden group cursor-pointer"
+              style={{
+                background: 'linear-gradient(135deg, #00D9FF 0%, #0099FF 50%, #0066FF 100%)',
+                boxShadow: `
+                  0 10px 30px rgba(0, 217, 255, 0.4),
+                  0 0 60px rgba(0, 153, 255, 0.3),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                  inset 0 -2px 10px rgba(0, 0, 0, 0.3)
+                `,
+                border: '2px solid rgba(255, 255, 255, 0.2)',
+                textShadow: '0 2px 10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.3)',
+                transform: 'perspective(1000px) rotateX(0deg)',
+                transformStyle: 'preserve-3d'
               }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ 
+                scale: 1.08,
+                y: -3,
+                boxShadow: `
+                  0 15px 40px rgba(0, 217, 255, 0.6),
+                  0 0 80px rgba(0, 153, 255, 0.5),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                  inset 0 -3px 15px rgba(0, 0, 0, 0.4)
+                `,
+                borderColor: 'rgba(255, 255, 255, 0.4)'
+              }}
+              whileTap={{ 
+                scale: 0.98,
+                y: 0
+              }}
               initial="hidden"
               animate={controls}
               variants={{
@@ -341,54 +367,116 @@ const EbookSection = () => {
                 visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 1 } }
               }}
             >
+              {/* 3D Top Highlight */}
+              <div 
+                className="absolute top-0 left-0 right-0 h-1/2 rounded-full opacity-60"
+                style={{
+                  background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.4), transparent)',
+                  transform: 'translateZ(5px)'
+                }}
+              />
+              
+              {/* 3D Bottom Shadow */}
+              <div 
+                className="absolute bottom-0 left-0 right-0 h-1/2 rounded-full opacity-40"
+                style={{
+                  background: 'linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent)',
+                  transform: 'translateZ(-5px)'
+                }}
+              />
+              
+              {/* Animated Shine Effect */}
               <motion.div
+                className="absolute inset-0 rounded-full"
+                style={{
+                  background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%)',
+                  transform: 'translateX(-100%)'
+                }}
+                animate={{
+                  x: ['-100%', '200%']
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  repeatDelay: 2,
+                  ease: 'easeInOut'
+                }}
+              />
+              
+              {/* Pulsing Glow Effect */}
+              <motion.div
+                className="absolute inset-0 rounded-full -z-10"
+                style={{
+                  background: 'linear-gradient(135deg, #00D9FF, #0099FF, #0066FF)',
+                  filter: 'blur(20px)',
+                  opacity: 0.6
+                }}
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.6, 0.8, 0.6]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: 'easeInOut'
+                }}
+              />
+              
+              {/* Content */}
+              <motion.div
+                className="relative z-10 flex items-center"
                 animate={{ 
-                  y: [0, -3, 0],
-                  x: [0, 2, 0]
+                  y: [0, -2, 0]
                 }}
                 transition={{ 
-                  duration: 2, 
+                  duration: 2.5, 
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                className="relative z-10 flex items-center"
               >
-                <svg
+                <motion.svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 mr-2"
+                  className="h-6 w-6"
                   viewBox="0 0 20 20"
                   fill="currentColor"
+                  animate={{
+                    y: [0, -3, 0]
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  style={{
+                    filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))'
+                  }}
                 >
                   <path
                     fillRule="evenodd"
                     d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 00-1.414-1.414L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
                     clipRule="evenodd"
                   />
-                </svg>
-                <span>Get Your Copy Now</span>
+                </motion.svg>
+                <span className="font-extrabold tracking-wide" style={{ 
+                  fontSize: '1.125rem',
+                  letterSpacing: '0.05em'
+                }}>
+                  Get Your Copy Now
+                </span>
               </motion.div>
               
-              {/* Enhanced button animations */}
-              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
-              <motion.div 
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-r from-cyan-500 to-blue-500 transition-opacity duration-500"
-                style={{ mixBlendMode: 'overlay' }}
-                initial={false}
-                animate={{ opacity: [0, 0.2, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-              <motion.div
-                className="absolute -bottom-2 left-0 right-0 h-1 bg-cyan-400"
-                initial={{ scaleX: 0, opacity: 0 }}
-                whileHover={{ scaleX: 1, opacity: 0.7 }}
-                transition={{ duration: 0.3 }}
-                style={{ transformOrigin: 'left' }}
+              {/* 3D Edge Highlights */}
+              <div 
+                className="absolute top-2 left-4 right-4 h-px rounded-full opacity-50"
+                style={{
+                  background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent)'
+                }}
               />
             </motion.button>
             
-            {/* Guarantee section */}
+            {/* Guarantee section - Enhanced */}
             <motion.div
-              className="mt-6 flex items-center space-x-2"
+              className="mt-6 flex items-center space-x-3"
               initial={{ opacity: 0 }}
               animate={controls}
               variants={{
@@ -396,10 +484,37 @@ const EbookSection = () => {
                 visible: { opacity: 1, transition: { delay: 1.1 } }
               }}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-cyan-400" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-              </svg>
-              <span className="text-gray-400 text-sm">30-day money back guarantee</span>
+              <motion.div
+                className="flex-shrink-0"
+                animate={{
+                  scale: [1, 1.1, 1]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className="h-6 w-6 text-cyan-400" 
+                  viewBox="0 0 20 20" 
+                  fill="currentColor"
+                  style={{
+                    filter: 'drop-shadow(0 0 8px rgba(0, 255, 255, 0.6))'
+                  }}
+                >
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+              </motion.div>
+              <span 
+                className="text-white text-base font-semibold"
+                style={{
+                  textShadow: '0 1px 3px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 255, 255, 0.3)'
+                }}
+              >
+                30-day money back guarantee
+              </span>
             </motion.div>
           </motion.div>
 
@@ -441,7 +556,7 @@ const EbookSection = () => {
               </>
             )}
             
-            {/* 3D Book Effect - Exact match to second image */}
+            {/* 3D Book Effect - Professional Design */}
             <motion.div 
               className="relative perspective-800 w-[380px] h-[500px] mx-auto"
               animate={{
@@ -453,58 +568,81 @@ const EbookSection = () => {
               style={{ transformStyle: 'preserve-3d' }}
             >
               <div className="book-container w-full h-full transform-style preserve-3d">
-                {/* Blue page - positioned exactly as in second image */}
-                <div className="absolute inset-0 rounded-lg bg-blue-600 transform translate-x-6 translate-y-4 -translate-z-6" 
+                {/* Background layer - subtle glow */}
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 transform translate-x-8 translate-y-6 -translate-z-8 blur-sm" 
                   style={{ width: '100%', height: '100%' }}></div>
                 
-                {/* Cyan page - positioned exactly as in second image */}
-                <div className="absolute inset-0 rounded-lg bg-cyan-400 transform -translate-x-6 -translate-y-6 -translate-z-3" 
+                {/* Middle layer - cyan accent */}
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-cyan-400/30 to-cyan-500/20 transform -translate-x-4 -translate-y-4 -translate-z-4" 
                   style={{ width: '100%', height: '100%' }}></div>
                 
-                {/* Main book cover */}
-                <div className="absolute inset-0 bg-[#080f18] rounded-lg overflow-hidden transform-style preserve-3d" 
+                {/* Main book cover - Professional design */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#0a1625] via-[#080f18] to-[#0a1625] rounded-xl overflow-hidden transform-style preserve-3d shadow-2xl" 
                   style={{
-                    boxShadow: '0 0 15px rgba(0, 217, 255, 0.4)',
-                    border: '1px solid rgba(0, 217, 255, 0.3)'
+                    boxShadow: '0 0 30px rgba(0, 217, 255, 0.5), 0 0 60px rgba(0, 128, 255, 0.2)',
+                    border: '2px solid rgba(0, 217, 255, 0.4)'
                   }}>
                   
-                  {/* Cover Design - Exact match to second image */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-[#080f18]">
-                    {/* Cyan top bar */}
-                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-cyan-400"></div>
+                  {/* Cover Design - Enhanced visibility */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-10 text-center bg-gradient-to-b from-[#0a1625] to-[#080f18]">
+                    {/* Cyan top accent bar */}
+                    <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-400 shadow-lg shadow-cyan-500/50"></div>
                     
-                    {/* Document icon - exact match */}
-                    <motion.div className="mb-8">
+                    {/* Document icon - larger and more visible */}
+                    <motion.div 
+                      className="mb-10"
+                      animate={{ 
+                        scale: [1, 1.05, 1],
+                        filter: ['drop-shadow(0 0 10px rgba(0, 255, 255, 0.5))', 'drop-shadow(0 0 20px rgba(0, 255, 255, 0.8))', 'drop-shadow(0 0 10px rgba(0, 255, 255, 0.5))']
+                      }}
+                      transition={{ duration: 3, repeat: Infinity }}
+                    >
                       <svg 
                         xmlns="http://www.w3.org/2000/svg" 
-                        className="h-16 w-16 text-cyan-400" 
+                        className="h-20 w-20 text-cyan-400" 
                         fill="none" 
                         viewBox="0 0 24 24" 
                         stroke="currentColor"
+                        style={{ filter: 'drop-shadow(0 0 15px rgba(0, 255, 255, 0.6))' }}
                       >
                         <path 
                           strokeLinecap="round" 
                           strokeLinejoin="round" 
-                          strokeWidth={1.5} 
+                          strokeWidth={2} 
                           d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                         />
                       </svg>
                     </motion.div>
                     
-                    {/* Title text with exact styling from second image */}
-                    <h3 className="text-xl tracking-wider font-medium mb-1 text-white">Ultimate Guide to</h3>
-                    <div className="text-4xl tracking-wide font-bold mb-6 text-cyan-400"
-                      style={{ letterSpacing: '0.02em', textShadow: '0 0 15px rgba(56, 189, 248, 0.5)' }}>
+                    {/* Title text - Enhanced visibility */}
+                    <h3 className="text-2xl tracking-wider font-semibold mb-2 text-white drop-shadow-lg" style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)' }}>
+                      Ultimate Guide to
+                    </h3>
+                    <div 
+                      className="text-5xl tracking-wide font-bold mb-8 gradient-text"
+                      style={{ 
+                        letterSpacing: '0.02em', 
+                        textShadow: '0 0 20px rgba(0, 255, 255, 0.6), 0 0 40px rgba(0, 128, 255, 0.4)',
+                        filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))'
+                      }}>
                       Financial Freedom
                     </div>
                     
-                    <div className="w-16 h-0.5 bg-cyan-400 my-3"></div>
+                    {/* Divider line */}
+                    <div className="w-20 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent my-4 shadow-lg shadow-cyan-400/50"></div>
                     
-                    <p className="text-sm text-gray-400 mb-10 font-light">By Investment Companion</p>
+                    {/* Author - More visible */}
+                    <p className="text-base text-gray-200 mb-12 font-medium drop-shadow-md" style={{ textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)' }}>
+                      By Investment Companion
+                    </p>
                     
+                    {/* Badge - Enhanced visibility */}
                     <div 
-                      className="mt-4 px-6 py-2 bg-[#021825] rounded-full text-cyan-400 text-sm border border-cyan-500/30"
-                      style={{ boxShadow: '0 0 10px rgba(56, 189, 248, 0.2)' }}
+                      className="px-8 py-3 bg-gradient-to-r from-[#021825] to-[#041a2e] rounded-full text-cyan-300 text-sm font-semibold border-2 border-cyan-500/50 shadow-lg"
+                      style={{ 
+                        boxShadow: '0 0 20px rgba(0, 255, 255, 0.4), inset 0 0 20px rgba(0, 255, 255, 0.1)',
+                        textShadow: '0 0 10px rgba(0, 255, 255, 0.5)'
+                      }}
                     >
                       230+ Pages of Expert Advice
                     </div>

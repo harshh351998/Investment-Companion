@@ -41,7 +41,7 @@ const CoursesSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="py-24 md:py-28 relative overflow-hidden"
+      className="py-20 md:py-24 relative overflow-hidden"
       id="courses"
     >
       {/* Background decoration */}

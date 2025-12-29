@@ -154,7 +154,7 @@ const Hero = () => {
   return (
     <div 
       ref={heroRef} 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-16"
     >
       {/* Animated background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-[#051622] to-black opacity-90"></div>
@@ -246,7 +246,7 @@ const Hero = () => {
           </motion.p>
 
           <motion.div
-            className="mt-10 flex flex-col sm:flex-row justify-center gap-4"
+            className="mt-12 flex flex-col sm:flex-row justify-center gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -260,7 +260,6 @@ const Hero = () => {
                 whileHover={{ scale: 1.05, y: -5 }}
                 whileTap={{ scale: 0.95 }}
                 initial="initial"
-                whileHover="hover"
                 variants={glowVariants}
               >
                 <span className="relative z-10 text-lg font-semibold">View Courses</span>
@@ -290,8 +289,6 @@ const Hero = () => {
                 className="border border-cyan-400 hover:bg-cyan-900/20 transition-all py-3 px-8 rounded-md flex items-center justify-center space-x-2 text-cyan-400 font-medium group"
                 whileHover={{ scale: 1.05, boxShadow: '0 0 15px rgba(0, 255, 255, 0.5)' }}
                 whileTap={{ scale: 0.95 }}
-                initial="initial"
-                whileHover="hover"
               >
                 <span>Get E-Book</span>
                 <motion.svg 
@@ -313,7 +310,7 @@ const Hero = () => {
           </motion.div>
 
           <motion.div 
-            className="mt-12 flex flex-wrap justify-center items-center gap-6 text-sm text-gray-300 max-w-3xl mx-auto"
+            className="mt-16 md:mt-20 flex flex-wrap justify-center items-center gap-6 text-sm text-gray-300 max-w-3xl mx-auto"
             initial="hidden"
             animate="visible"
             variants={moveVariants}
